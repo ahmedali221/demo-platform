@@ -20,9 +20,9 @@ import type { Step1Form } from "./Step1PersonalInfo";
 import type { Step2Form } from "./Step2WorkVehicle";
 import { CouriersLookupsResponse } from "../../types/Couriers";
 
-const ID_TYPE_LABELS: Record<number, string> = { 1: "هوية وطنية", 2: "إقامة", 3: "جواز سفر" };
-const VEHICLE_TYPE_LABELS: Record<number, string> = { 1: "سيارة", 2: "دراجة نارية", 3: "شاحنة" };
-const CONTRACT_TYPE_LABELS: Record<number, string> = { 1: "تأجير تمويلي", 2: "تأجير تشغيلي", 3: "ملك الشركة", 4: "ملك المندوب" };
+const ID_TYPE_KEYS: Record<number, string> = { 1: "courier.add.idTypeNationalId", 2: "courier.add.idTypeIqama", 3: "courier.add.idTypePassport" };
+const VEHICLE_TYPE_KEYS: Record<number, string> = { 1: "courier.add.vehicleTypeCar", 2: "courier.add.vehicleTypeBike", 3: "courier.add.vehicleTypeTruck" };
+const CONTRACT_TYPE_KEYS: Record<number, string> = { 1: "courier.add.contractTypeFinancialLease", 2: "courier.add.contractTypeOperationalLease", 3: "courier.add.contractTypeCompanyOwned", 4: "courier.add.contractTypeCourierOwned" };
 
 interface ReviewRowProps {
   icon: React.ReactNode;
@@ -143,7 +143,7 @@ const ReviewStep = ({
           <ReviewRow
             icon={<CreditCard className="w-4 h-4" />}
             label={t("courier.add.idType")}
-            value={step1.idType ? (ID_TYPE_LABELS[step1.idType] ?? String(step1.idType)) : ""}
+            value={step1.idType ? t(ID_TYPE_KEYS[step1.idType] ?? "") : ""}
           />
           <ReviewRow
             icon={<Hash className="w-4 h-4" />}
@@ -169,7 +169,7 @@ const ReviewStep = ({
           <ReviewRow
             icon={<Car className="w-4 h-4" />}
             label={t("courier.add.transportMode")}
-            value={step2.vehicle.vehicleType ? (VEHICLE_TYPE_LABELS[Number(step2.vehicle.vehicleType)] ?? "") : ""}
+            value={step2.vehicle.vehicleType ? t(VEHICLE_TYPE_KEYS[Number(step2.vehicle.vehicleType)] ?? "") : ""}
           />
           <ReviewRow
             icon={<Calendar className="w-4 h-4" />}
@@ -184,7 +184,7 @@ const ReviewStep = ({
           <ReviewRow
             icon={<FileText className="w-4 h-4" />}
             label={t("courier.add.vehicleContract")}
-            value={step2.vehicle.vehicleContract ? (CONTRACT_TYPE_LABELS[Number(step2.vehicle.vehicleContract)] ?? "") : ""}
+            value={step2.vehicle.vehicleContract ? t(CONTRACT_TYPE_KEYS[Number(step2.vehicle.vehicleContract)] ?? "") : ""}
           />
           <ReviewRow
             icon={<Key className="w-4 h-4" />}

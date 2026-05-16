@@ -5,27 +5,26 @@ import {
   Settings,
   FileText,
   UploadCloud,
-  LandPlot,
 } from "lucide-react";
 import { CouriersLookupsResponse } from "../../types/Couriers";
 
 const VEHICLE_TYPES = [
-  { id: 1, name: "سيارة" },
-  { id: 2, name: "دراجة نارية" },
-  { id: 3, name: "شاحنة" },
+  { id: 1, name: "courier.add.vehicleTypeCar" },
+  { id: 2, name: "courier.add.vehicleTypeBike" },
+  { id: 3, name: "courier.add.vehicleTypeTruck" },
 ];
 
 const LICENSE_TYPES = [
-  { id: 1, name: "خاصة" },
-  { id: 2, name: "تجارية" },
-  { id: 3, name: "ثقيلة" },
+  { id: 1, name: "courier.add.licenseTypePrivate" },
+  { id: 2, name: "courier.add.licenseTypeCommercial" },
+  { id: 3, name: "courier.add.licenseTypeHeavy" },
 ];
 
 const CONTRACT_TYPES = [
-  { id: 1, name: "تأجير تمويلي" },
-  { id: 2, name: "تأجير تشغيلي" },
-  { id: 3, name: "ملك الشركة" },
-  { id: 4, name: "ملك المندوب" },
+  { id: 1, name: "courier.add.contractTypeFinancialLease" },
+  { id: 2, name: "courier.add.contractTypeOperationalLease" },
+  { id: 3, name: "courier.add.contractTypeCompanyOwned" },
+  { id: 4, name: "courier.add.contractTypeCourierOwned" },
 ];
 
 export interface Step2Form {
@@ -114,11 +113,15 @@ const TextField = ({
   onChange,
   placeholder = "",
   hasError,
+  numericOnly = false,
+  maxLength,
 }: {
   value: string | number;
   onChange: (v: string | number) => void;
   placeholder?: string;
   hasError?: boolean;
+  numericOnly?: boolean;
+  maxLength?: number;
 }) => (
   <div
     className={`h-11 px-3 bg-gray-100 rounded-xl flex items-center overflow-hidden ${hasError ? "border border-red-400" : ""}`}
@@ -126,8 +129,13 @@ const TextField = ({
     <input
       type="text"
       value={value}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e) => {
+        const val = numericOnly ? e.target.value.replace(/\D/g, "") : e.target.value;
+        onChange(val);
+      }}
       placeholder={placeholder}
+      maxLength={maxLength}
+      inputMode={numericOnly ? "numeric" : undefined}
       className="w-full bg-transparent text-right text-xs font-normal font-['Cairo'] text-gray-700 placeholder:text-neutral-400 outline-none"
     />
   </div>
@@ -289,6 +297,7 @@ const Step2WorkVehicle = ({
                 value={data.vehicle.operationCardNumber}
                 onChange={(v) => update("vehicle.operationCardNumber", v)}
                 placeholder={t("courier.add.licenseNumberPlaceholder")}
+                numericOnly
               />
             </FieldWrapper>
           </div>
@@ -350,6 +359,7 @@ const Step2WorkVehicle = ({
                 onChange={(v) => update("licenseNumber", v)}
                 placeholder={t("courier.add.licenseNumberPlaceholder")}
                 hasError={!!errors.licenseNumber}
+                numericOnly
               />
             </FieldWrapper>
 

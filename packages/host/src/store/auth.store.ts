@@ -1,4 +1,4 @@
-import { login as loginRequest, logout, forgotPassword as forgotPasswordRequest, resetPassword as resetPasswordRequest, getMe } from "../api/auth.service";
+import { login as loginRequest, logout, forgotPassword as forgotPasswordRequest, resetPassword as resetPasswordRequest, refreshSession } from "../api/auth.service";
 import { applyUserPreferences } from "../api/preferences.service";
 import { loginCredentials, UserStore } from "src/types/auth";
 import { create } from "zustand";
@@ -18,12 +18,8 @@ export const useUserStore = create<UserStore>()(
       initAuth: async () => {
         set({ isLoading: true });
         try {
-          const data = await getMe();
+          await refreshSession();
           set({
-            email: data.email,
-            role: data.role,
-            userId: data.userId,
-            isActive: data.isActive,
             isAuthenticated: true,
             isLoading: false,
             error: null,

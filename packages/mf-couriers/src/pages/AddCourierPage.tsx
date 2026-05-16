@@ -14,7 +14,6 @@ import Step2OperationsInfo, {
 import Step3Review from "../components/AddCourier/ReviewStep";
 import SuccessModal from "../components/AddCourier/SuccessModal";
 import back from "../assets/back-arrow.svg";
-import "../lib/i18n";
 
 import add from "../assets/add.svg";
 import done from "../assets/done.svg";
@@ -22,9 +21,9 @@ import { createCourier, getCourierLookups } from "../api/courier.service";
 import { CouriersLookupsResponse } from "../types/Couriers";
 
 const STEPS = [
-  { labelAr: "المعلومات الشخصية", labelEn: "Personal Info" },
-  { labelAr: "بيانات العمل", labelEn: "Work Info" },
-  { labelAr: "المراجعة والإرسال", labelEn: "Review & Submit" },
+  { key: "courier.add.step1" },
+  { key: "courier.add.step2" },
+  { key: "courier.add.step3" },
 ];
 
 type FieldErrors = Record<string, string>;
@@ -42,9 +41,8 @@ const AddCourierPage = () => {
   } | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const isAr = i18n.language?.startsWith("ar");
 
   const required = t("courier.add.requiredField");
   const getLookups = async () => {
@@ -71,6 +69,7 @@ const AddCourierPage = () => {
     if (!step1.idType) errors.idType = required;
     if (!step1.idNumber.trim()) errors.idNumber = required;
     if (!step1.idExpiryDate) errors.idExpiryDate = required;
+    if (!step1.idImage) errors.idImage = t("courier.add.idImageRequired");
     setStep1Errors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -207,7 +206,7 @@ const AddCourierPage = () => {
           <img src={add} className="h-7" />
           <div className="flex flex-col gap-3">
             <p className="text-xl font-bold">{t("courier.addNewCourier")}</p>
-            <p className="text-xs">{t("courier.addNewCourier")}</p>
+            <p className="text-xs">{t("courier.addNewCourierSubtitle")}</p>
           </div>
         </div>
 
@@ -230,7 +229,7 @@ const AddCourierPage = () => {
                     index <= activeStep ? "text-blue-900" : "text-gray-400"
                   }`}
                 >
-                  {isAr ? step.labelAr : step.labelEn}
+                  {t(step.key)}
                 </span>
               </div>
               {index < STEPS.length - 1 && (

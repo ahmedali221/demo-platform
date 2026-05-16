@@ -35,9 +35,9 @@ export const login = async (userData: loginCredentials) => {
   }
 };
 
-export const getMe = async () => {
+export const refreshSession = async () => {
   try {
-    const response = await api.get("/me");
+    const response = await api.post("/auth/refresh");
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

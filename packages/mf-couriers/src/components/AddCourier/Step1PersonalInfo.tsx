@@ -54,8 +54,10 @@ const PhoneField = ({
     <input
       type="tel"
       value={value}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e) => onChange(e.target.value.replace(/\D/g, ""))}
       placeholder="05XXXXXXXX"
+      maxLength={10}
+      inputMode="numeric"
       className="flex-1 bg-transparent text-right text-xs font-normal font-['Inter'] text-gray-700 placeholder:text-neutral-400 outline-none min-w-0"
     />
     <span className="text-neutral-400 text-xs font-semibold font-['Inter'] shrink-0">
@@ -184,8 +186,10 @@ const Step1PersonalInfo = ({
                   <input
                     type="text"
                     value={data.idNumber}
-                    onChange={(e) => update("idNumber", e.target.value)}
+                    onChange={(e) => update("idNumber", e.target.value.replace(/\D/g, ""))}
                     placeholder="1XXXXXXXXX"
+                    maxLength={10}
+                    inputMode="numeric"
                     className="w-full bg-transparent text-right text-xs font-normal font-['Inter'] text-gray-700 placeholder:text-neutral-400 outline-none"
                   />
                 </div>
