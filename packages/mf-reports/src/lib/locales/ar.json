@@ -1,0 +1,218 @@
+{
+  "reports": {
+    "pageTitle": "التقارير التشغيلية",
+    "todayDate": "الأحد، 5 أبريل 2026",
+    "reportsCount": "{{count}} تقارير",
+    "export": "تصدير",
+    "createReport": "إنشاء تقرير",
+    "loading": "جارٍ التحميل...",
+    "noData": "لا توجد بيانات",
+    "view": {
+      "grid": "كروت",
+      "list": "قائمة"
+    },
+    "filter": {
+      "all": "الكل",
+      "daily": "يومي",
+      "weekly": "أسبوعي",
+      "monthly": "شهري"
+    },
+    "searchPlaceholder": "بحث بالعنوان أو المعرفة أو المنصة...",
+    "noResults": "لا توجد تقارير تطابق البحث",
+    "pagination": {
+      "showing": "عرض {{totalItems}} من {{count}} تقرير"
+    },
+    "status": {
+      "completed": "مكتمل",
+      "warning": "تحذير",
+      "error": "خطأ"
+    },
+    "stats": {
+      "records": "السجلات",
+      "orders": "الطلبات",
+      "violations": "المخالفات",
+      "warnings": "التحذيرات"
+    },
+    "units": {
+      "record": "سجل",
+      "order": "طلب",
+      "violation": "مخالفة",
+      "warning": "تحذير"
+    },
+    "sla": {
+      "label": "نسبة SLA",
+      "target": "الهدف {{percent}}%",
+      "min": "0%",
+      "max": "100%",
+      "near": "قريب",
+      "belowTarget": "أقل الهدف",
+      "aboveTarget": "فوق الهدف",
+      "matchingTarget": "مطابق الهدف"
+    },
+    "modal": {
+      "detailsTitle": "تفاصيل التقرير",
+      "date": "التاريخ",
+      "fullName": "الاسم الكامل",
+      "fileSize": "حجم الملف",
+      "reportId": "معرف التقرير",
+      "downloadPdf": "تحميل PDF",
+      "exportCsv": "تصدير CSV",
+      "reupload": "إعادة رفع"
+    },
+    "addReport": {
+      "title": "إنشاء تقرير جديد",
+      "subtitle": "حدد نوع التقرير والفترة الزمنية والأقسام المطلوبة",
+      "back": "رجوع",
+      "cancel": "إلغاء",
+      "save": "حفظ التقرير",
+      "breadcrumb": {
+        "reports": "التقارير",
+        "addReport": "إنشاء تقرير جديد"
+      },
+      "reportType": {
+        "title": "نوع التقرير",
+        "daily":   { "title": "تقرير يومي",   "desc": "عرض أداء اليوم الواحد يوم/بيوم" },
+        "weekly":  { "title": "تقرير أسبوعي", "desc": "مقارنة أداء 7 أيام متتالية" },
+        "monthly": { "title": "تقرير شهري",   "desc": "ملخص شامل للشهر الواحد" },
+        "custom":  { "title": "تقرير مخصص",   "desc": "حدد نطاق زمني وأقسام خاصة" }
+      },
+      "reportInfo": {
+        "title": "معلومات التقرير",
+        "period": "الفترة الزمنية",
+        "endDate": "تاريخ النهاية",
+        "reportTitle": "عنوان التقرير *",
+        "reportTitlePlaceholder": "مثال: تقرير أداء المناديب — أول 2025 القلندة",
+        "exportFormat": "صيغة التصدير",
+        "platform": "المنصة",
+        "quick": {
+          "today": "اليوم",
+          "yesterday": "أمس",
+          "last3": "آخر 3 أيام",
+          "last10": "آخر 10 أيام",
+          "thisMonth": "هذا الشهر"
+        }
+      },
+      "sections": {
+        "title": "أقسام التقرير",
+        "agentPerformance": "أداء المناديب",
+        "slaRatio": "نسبة الخدمة SLA",
+        "operationalEfficiency": "الكفاءة التشغيلية",
+        "violations": "المخالفات التفصيلية",
+        "shiftControl": "الضبط الشفت",
+        "platformComparison": "مقارنة المنصات",
+        "bestWorstAgents": "أفضل وأسوأ المناديب",
+        "riskIndicators": "مؤشرات الخطر"
+      },
+      "additionalOptions": {
+        "title": "خيارات إضافية",
+        "sendEmail": "إرسال التقرير بالبريد الإلكتروني",
+        "sendEmailDesc": "سيتم الإرسال إلى إيميل المنصة",
+        "recurring": "تكرار تلقائي",
+        "recurringDesc": "إعادة إنشاء التقرير تلقائياً بنفس الإعدادات دورياً",
+        "notes": "ملاحظات",
+        "notesPlaceholder": "أي ملاحظات أو تعليمات خاصة بالتقرير..."
+      },
+      "export": { "both": "كلاهما" },
+      "platform": { "all": "الكل" }
+    },
+    "companies": {
+      "title": "تقارير الشركة",
+      "subtitleBold": "الأداء التشغيلي للشركة",
+      "subtitleRest": "كل المؤشرات على مستوى الشركة",
+      "searchPlaceholder": "بحث بالعنوان أو المعرفة أو المنصة...",
+      "stats": {
+        "completed": "إجمالي الطلبات المكتملة",
+        "forwarded": "إجمالي الطلبات الملفافة (توصيل)",
+        "rejected": "إجمالي الطلبات المرفوضة"
+      },
+      "kpis": {
+        "onTimeDeliveryRate": "معدل التوصيل على الموعد",
+        "cancellationRate": "معدل الإلغاء",
+        "rejectionRate": "معدل الرفض",
+        "attendanceRate": "نسبة حضور الشفتات",
+        "operationalEfficiency": "الكفاءة التشغيلية"
+      },
+      "status": {
+        "WithinTarget": "ضمن الهدف",
+        "BelowTarget": "أقل من الهدف",
+        "ExceededLimit": "تجاوز الحد"
+      },
+      "tableTitle": "جدول ملخص الأداء التشغيلي",
+      "columns": {
+        "indicator": "المؤشر",
+        "currentValue": "القيمة الحالية",
+        "status": "الحالة"
+      }
+    },
+    "couriers": {
+      "title": "أداء المناديب",
+      "subtitleBold": "المناديب",
+      "subtitleRest": "كل المؤشرات على مستوى الشركة",
+      "searchPlaceholder": "بحث باسم المندوب...",
+      "stats": {
+        "total": "إجمالي المناديب المسجلين",
+        "eligible": "المناديب الصالحين",
+        "eligibleBadge": "ضمن الهدف",
+        "ineligible": "المناديب غير الصالحين",
+        "ineligibleBadge": "أقل من الهدف",
+        "eligibilityRate": "نسبة الصلاحية الإجمالية",
+        "rateBadge": "ضمن الهدف"
+      },
+      "classificationTable": "توزيع مستويات Keeta",
+      "tableTitle": "تفاصيل أداء كل مندوب",
+      "columns": {
+        "courierName": "اسم المندوب",
+        "providerName": "المزود",
+        "totalTasksDelivered": "الطلبات المسلمة",
+        "totalTasksCancelledByCourier": "الإلغاءات",
+        "totalTasksRejected": "المرفوضة",
+        "onTimeRate": "التوصيل في الوقت",
+        "avgCompletionRate": "معدل الإكمال",
+        "keetaLevel": "مستوى Keeta",
+        "validityTier": "تصنيف الحجم",
+        "isValid": "الحالة"
+      },
+      "couriersUnit": "مندوب",
+      "noLevel": "بدون تصنيف"
+    },
+    "mock": {
+      "dailyPerformance": "تقرير الأداء اليومي",
+      "weeklyViolations": "تقرير المخالفات الأسبوعي",
+      "agentPerformance": "تقرير أداء المناديب",
+      "monthlySla": "تقرير SLA الشهري",
+      "violationsWeek1": "تقرير المخالفات — أسبوع 1",
+      "operationalEfficiency": "تقرير الكفاءة التشغيلية",
+      "weeklyOrders": "تقرير توزيع الطلبات الأسبوعي",
+      "monthlyPerformanceMarch": "تقرير الأداء الشهري — مارس",
+      "dailyDelay": "تقرير التأخير اليومي",
+      "agentWeekly2": "تقرير المناديب — الأسبوع الثاني",
+      "dailyVolume": "تقرير حجم الشحنات اليومي",
+      "lateDeliveryWeek3": "تقرير التسليم المتأخر — أسبوع 3",
+      "weeklyPerformanceFeb": "تقرير الأداء الأسبوعي — فبراير",
+      "slaFeb": "تقرير SLA — فبراير",
+      "dailyDelivery": "تقرير التوصيل اليومي",
+      "regionsQ1": "تقرير المناطق — الربع الأول",
+      "weeklyErrors": "تقرير الأخطاء الأسبوعي",
+      "monthlyPerformanceJan": "تقرير الأداء الشهري — يناير",
+      "errors": {
+        "failedProcess": "فشل في معالجة الملف — يحتاج إعادة رفع",
+        "failedProcessDesc": "حدث خطأ أثناء معالجة الملف. يُرجى إعادة رفع الملف والمحاولة مجدداً.",
+        "timeout": "انتهت مهلة المعالجة — يُرجى إعادة المحاولة",
+        "timeoutDesc": "تجاوز الملف الحد الزمني للمعالجة، يُرجى إعادة الرفع أو التواصل مع الدعم."
+      },
+      "alerts": {
+        "needReview": "8 تحذيرات تحتاج مراجعة",
+        "needReviewDesc": "بيانات في هذا التقرير تحتاج مراجعة يدوية قبل اتخاذ قرارات تشغيلية.",
+        "lowSla": "SLA أقل من الهدف المطلوب",
+        "lowSlaDesc": "نسبة الخدمة أقل من 90% — يُنصح بمراجعة بيانات الأداء وتحديد أسباب الانخفاض.",
+        "urgentReview": "29 مخالفة — مراجعة عاجلة",
+        "urgentReviewDesc": "عدد المخالفات تجاوز الحد المسموح، يُنصح باتخاذ إجراء تصحيحي فوري.",
+        "sharpDecline": "SLA أقل من الهدف بشكل ملحوظ",
+        "sharpDeclineDesc": "يُنصح بتحليل أسباب الانخفاض الحاد في نسبة الخدمة هذا الأسبوع.",
+        "highWarnings": "17 تحذيراً بحاجة مراجعة",
+        "highWarningsDesc": "تجاوز عدد التحذيرات الحد الطبيعي في هذا الشهر."
+      },
+      "system": "النظام"
+    }
+  }
+}

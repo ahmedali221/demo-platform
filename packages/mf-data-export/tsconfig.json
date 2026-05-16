@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "typeRoots": ["../../node_modules/@types", "../host/node_modules/@types", "node_modules/@types"],
+    "types": ["node"],
+    "paths": {
+      "@ops-brain/shared": ["../shared/src"],
+      "@ops-brain/shared/*": ["../shared/src/*"]
+    }
+  },
+  "include": ["src", "../shared/src"]
+}

@@ -1,0 +1,25 @@
+/* Host-specific styles only — Tailwind is loaded globally via styles/output.css */
+@import "tailwindcss";
+/* Hide native browser password reveal button (Edge/Chrome) to avoid duplicate with custom toggle */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+@source "./";
+@source "../../shared/src";
+@layer components {
+  .otp-input {
+    width: 3.5rem;
+    height: 3.5rem;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .otp-input:focus {
+    border-color: #c9a44c;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "altanfeez-aldaqiq-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "css": "tailwindcss -i styles/input.css -o styles/output.css",
+    "css:watch": "tailwindcss -i styles/input.css -o styles/output.css --watch",
+    "dev": "pnpm --parallel -r run dev",
+    "build": "pnpm --parallel -r run build",
+    "tw:watch": "npx @tailwindcss/cli -i ./src/styles/input.css -o ./src/styles/output.css --watch",
+    "tw:build": "npx @tailwindcss/cli -i ./src/styles/input.css -o ./src/styles/output.css"
+  },
+  "workspaces": [
+    "packages/host",
+    "packages/mf-couriers",
+    "packages/mf-data-export",
+    "packages/mf-reports",
+    "packages/shared"
+  ],
+  "dependencies": {
+    "css-loader": "^7.1.2",
+    "pdf-parse": "^2.4.5",
+    "pnpm": "^10.33.0",
+    "postcss-loader": "^8.1.1",
+    "style-loader": "^4.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.2",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "sidebar": {
+    "dashboard": "لوحة التحكم",
+    "couriers": "المناديب",
+    "dataImport": "استيراد البيانات",
+    "importFile": "استيراد ملف",
+    "importLogs": "سجل الاستيراد",
+    "reports": "التقارير",
+    "settings": "الاعدادات"
+  },
+  "dataImport": {
+    "pageTitle": "استراتيجية ربط البيانات",
+    "pageSubtitle": "اختر الطريقة الأنسب لمعالجة البيانات التشغيلية الخاصة بك",
+    "strategies": {
+      "csv": {
+        "title": "استيراد ملفات CSV / Excel",
+        "description": "ارفع التقارير المصدرة من تطبيقات التوصيل مباشرة لمعالجة ذكية",
+        "badge": "متاح الآن",
+        "extraBadge": "خيار موصى به"
+      },
+      "manual": {
+        "title": "إدخال يدوي",
+        "description": "أضف السجلات والبيانات التشغيلية بشكل فردي للتدقيق اليدوي",
+        "badge": "متاح الثاني"
+      },
+      "browser": {
+        "title": "إضافة المتصفح",
+        "description": "سحب البيانات تلقائياً من لوحات التحكم الخاصة بالمتاجر بضغطة واحدة",
+        "badge": "قريباً"
+      }
+    },
+    "platforms": {
+      "keta": "كيتا",
+      "hungerstation": "هنفرستيشن"
+    },
+    "upload": {
+      "title": "رفع ملف بيانات",
+      "subtitleKeta": "اختر ملف التقرير الخاص بمنصة 'كيتا' للبدء بالتحليل",
+      "subtitleHungerstation": "اختر ملف التقرير الخاص بمنصة 'هنفرستيشن' للبدء بالتحليل",
+      "dragText": "اسحب الملف هنا أو قم بالتصفح",
+      "formatHint": "يدعم تنسيقات {{formats}} (الحد الأقصى {{maxSize}})",
+      "uploadButton": "رفع الملف",
+      "removeFile": "إزالة الملف",
+      "confirm": {
+        "title": "تأكيد الرفع",
+        "message": "هل أنت متأكد من رفع هذا الملف؟",
+        "confirm": "نعم، ارفع",
+        "cancel": "إلغاء"
+      },
+      "stepsLabel": "خطوات التصدير من {{platform}}:",
+      "stepsKeta": "لوحة التحكم ← التقارير ← تقرير السائقين ← تصدير CSV ← ارفع الملف هنا",
+      "stepsHungerstation": "لوحة التحكم ← التقارير ← تقرير المناديب ← تصدير Excel ← ارفع الملف هنا"
+    },
+    "confirm": {
+      "title": "تأكيد الرفع",
+      "message": "هل أنت متأكد من رفع هذا الملف؟",
+      "confirm": "نعم، ارفع",
+      "cancel": "إلغاء"
+    },
+    "manualTitle": "إدخال يدوي",
+    "manualDesc": "أضف السجلات والبيانات التشغيلية بشكل فردي للتدقيق اليدوي",
+    "uploadResult": {
+      "loading": "جار التحميل...",
+      "noSources": "لا توجد مصادر",
+      "success": "تم الرفع بنجاح",
+      "successWithWarnings": "تم الرفع مع تحذيرات",
+      "rowsProcessed": "{{parsed}} / {{total}} سجل تم معالجته",
+      "failedCount": " — {{count}} فشل",
+      "uploadAnother": "رفع ملف آخر",
+      "importFailed": "فشلت عملية الاستيراد",
+      "serverErrorDesc": "لم يتم معالجة أي سجلات — حدث خطأ في الخادم أثناء قراءة الملف",
+      "serverErrorMsg": "رسالة الخطأ من الخادم",
+      "retry": "المحاولة مجدداً",
+      "failedTitle": "فشل رفع الملف",
+      "langHintEn": "يرجى تحميل الملفات التي تحتوي على بيانات باللغة الإنجليزية",
+      "langHintAr": "يرجى تحميل الملفات التي تحتوي على بيانات باللغة العربية"
+    }
+  },
+  "importLogs": {
+    "pageTitle": "سجل البيانات المستوردة",
+    "pageSubtitle": "جميع البيانات التي تم استيرادها من منصات التوصيل — مرتبة حسب جلسة الاستيراد",
+    "exportAll": "تصدير الكل",
+    "refresh": "تحديث",
+    "loading": "جار التحميل...",
+    "emptyTable": "لا توجد سجلات",
+    "backToSessions": "العودة إلى الجلسات",
+    "datasources": "مصادر البيانات",
+    "datasourcesTitle": "مصادر البيانات المتاحة",
+    "stats": {
+      "lastImport": "آخر استيراد",
+      "lastImportSub": "09:14 ص",
+      "warningRows": "صفوف بتحذيرات",
+      "failedBatches": "الدفعات الفاشلة",
+      "warningRowsSub": "تحتاج مراجعة",
+      "totalSessions": "جلسات الاستيراد",
+      "totalSessionsSub": "ملف مستورد",
+      "uniqueDrivers": "السائقون الفريدون",
+      "uniqueDriversSub": "معرّف مختلف",
+      "totalRows": "إجمالي السجلات",
+      "totalRowsSub": "عبر جميع الجلسات"
+    },
+    "filters": {
+      "newestFirst": "الأحدث أولاً",
+      "oldestFirst": "الأقدم أولاً",
+      "search": "ابحث عن معرف أو اسم...",
+      "all": "الكل",
+      "warnings": "تحذيرات",
+      "healthy": "سليمة",
+      "failed": "فاشل",
+      "fast": "سريعة",
+      "filter": "تصفية",
+      "statusLabel": "الحالة",
+      "platformLabel": "المنصة:"
+    },
+    "platforms": {
+      "all": "الكل",
+      "keta": "كيتا",
+      "hungerstation": "هنقرستيشن",
+      "manfer": "منفر",
+      "jahiz": "جاهز",
+      "hunger": "هنقر"
+    },
+    "sidebar": {
+      "title": "سجل الاستيرادات",
+      "viewAll": "عرض الكل",
+      "record": "سجل",
+      "driver": "سائق",
+      "empty": "لا توجد سجلات استيراد حتى الآن",
+      "status": {
+        "success": "ناجح",
+        "warning": "تحذير",
+        "failed": "فاشل"
+      }
+    },
+    "session": {
+      "active": "نشط",
+      "exportCsv": "تصدير CSV",
+      "filter": "تصفية",
+      "statusSuccess": "ناجح",
+      "warningCount": "{{count}} تحذير",
+      "recordCount": "{{count}} سجل",
+      "searchPlaceholder": "ابحث في هذه الجلسة..."
+    },
+    "sessionTable": {
+      "date": "التاريخ",
+      "courierId": "معرف المندوب",
+      "fullName": "الاسم الكامل",
+      "supervisor": "المشرف",
+      "vehicleType": "نوع المركبة",
+      "notes": "التنويات",
+      "status": "الحالة",
+      "actions": "إجراءات"
+    },
+    "table": {
+      "date": "التاريخ",
+      "importId": "معرف الاستيراد",
+      "fileName": "اسم الملف",
+      "dataSource": "مصدر البيانات",
+      "rows": "الصفوف",
+      "ofTotal": "من {{total}}",
+      "status": "الحالة",
+      "actions": "إجراءات",
+      "statusCompleted": "مكتمل",
+      "statusWarning": "تحذير",
+      "statusFailed": "فاشل",
+      "statusProcessing": "قيد المعالجة",
+      "viewDetails": "عرض التفاصيل",
+      "pagination": {
+        "of": "من",
+        "records": "سجل"
+      }
+    }
+  }
+}

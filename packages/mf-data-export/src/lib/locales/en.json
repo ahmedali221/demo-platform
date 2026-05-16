@@ -1,0 +1,174 @@
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "couriers": "Couriers",
+    "dataImport": "Data Import",
+    "importFile": "Import File",
+    "importLogs": "Import Logs",
+    "reports": "Reports",
+    "settings": "Settings"
+  },
+  "dataImport": {
+    "pageTitle": "Data Linking Strategy",
+    "pageSubtitle": "Choose the most suitable method for processing your operational data",
+    "strategies": {
+      "csv": {
+        "title": "Import CSV / Excel Files",
+        "description": "Upload reports exported from delivery apps directly for smart processing",
+        "badge": "Available Now",
+        "extraBadge": "Recommended"
+      },
+      "manual": {
+        "title": "Manual Entry",
+        "description": "Add records and operational data individually for manual auditing",
+        "badge": "Second Option"
+      },
+      "browser": {
+        "title": "Browser Extension",
+        "description": "Pull data automatically from store dashboards with one click",
+        "badge": "Coming Soon"
+      }
+    },
+    "platforms": {
+      "keta": "Keta",
+      "hungerstation": "HungerStation"
+    },
+    "upload": {
+      "title": "Upload Data File",
+      "subtitleKeta": "Choose the 'Keta' platform report file to start analysis",
+      "subtitleHungerstation": "Choose the 'HungerStation' platform report file to start analysis",
+      "dragText": "Drag file here or browse",
+      "formatHint": "Supports {{formats}} formats (max {{maxSize}})",
+      "uploadButton": "Upload File",
+      "removeFile": "Remove File",
+      "confirm": {
+        "title": "Confirm Upload",
+        "message": "Are you sure you want to upload this file?",
+        "confirm": "Yes, Upload",
+        "cancel": "Cancel"
+      },
+      "stepsLabel": "Export steps from {{platform}}:",
+      "stepsKeta": "Dashboard ← Reports ← Driver Report ← Export CSV ← Upload File Here",
+      "stepsHungerstation": "Dashboard ← Reports ← Couriers Report ← Export Excel ← Upload File Here"
+    },
+    "confirm": {
+      "title": "Confirm Upload",
+      "message": "Are you sure you want to upload this file?",
+      "confirm": "Yes, Upload",
+      "cancel": "Cancel"
+    },
+    "manualTitle": "Manual Entry",
+    "manualDesc": "Add records and operational data individually for manual auditing",
+    "uploadResult": {
+      "loading": "Loading...",
+      "noSources": "No sources available",
+      "success": "Uploaded successfully",
+      "successWithWarnings": "Uploaded with warnings",
+      "rowsProcessed": "{{parsed}} / {{total}} records processed",
+      "failedCount": " — {{count}} failed",
+      "uploadAnother": "Upload another file",
+      "importFailed": "Import process failed",
+      "serverErrorDesc": "No records were processed — a server error occurred while reading the file",
+      "serverErrorMsg": "Server Error Message",
+      "retry": "Try Again",
+      "failedTitle": "File upload failed",
+      "langHintEn": "Please upload files with data in English",
+      "langHintAr": "Please upload files with data in Arabic"
+    }
+  },
+  "importLogs": {
+    "pageTitle": "Imported Data Records",
+    "pageSubtitle": "All data imported from delivery platforms — sorted by import session",
+    "exportAll": "Export All",
+    "refresh": "Refresh",
+    "loading": "Loading...",
+    "emptyTable": "No records found",
+    "backToSessions": "Back to Sessions",
+    "datasources": "Data Sources",
+    "datasourcesTitle": "Available Data Sources",
+    "stats": {
+      "lastImport": "Last Import",
+      "lastImportSub": "09:14 AM",
+      "warningRows": "Warning Rows",
+      "failedBatches": "Failed Batches",
+      "warningRowsSub": "Need Review",
+      "totalSessions": "Import Sessions",
+      "totalSessionsSub": "Imported File",
+      "uniqueDrivers": "Unique Drivers",
+      "uniqueDriversSub": "Different IDs",
+      "totalRows": "Total Records",
+      "totalRowsSub": "Across All Sessions"
+    },
+    "filters": {
+      "newestFirst": "Newest First",
+      "oldestFirst": "Oldest First",
+      "search": "Search by ID or name...",
+      "all": "All",
+      "warnings": "Warnings",
+      "healthy": "Healthy",
+      "failed": "Failed",
+      "fast": "Fast",
+      "filter": "Filter",
+      "statusLabel": "Status",
+      "platformLabel": "Platform:"
+    },
+    "platforms": {
+      "all": "All",
+      "keta": "Keta",
+      "hungerstation": "HungerStation",
+      "manfer": "Manfer",
+      "jahiz": "Jahiz",
+      "hunger": "Hunger"
+    },
+    "sidebar": {
+      "title": "Import Logs",
+      "viewAll": "View All",
+      "record": "record",
+      "driver": "driver",
+      "empty": "No import logs yet",
+      "status": {
+        "success": "Success",
+        "warning": "Warning",
+        "failed": "Failed"
+      }
+    },
+    "session": {
+      "active": "Active",
+      "exportCsv": "Export CSV",
+      "filter": "Filter",
+      "statusSuccess": "Success",
+      "warningCount": "{{count}} warning",
+      "recordCount": "{{count}} records",
+      "searchPlaceholder": "Search in this session..."
+    },
+    "sessionTable": {
+      "date": "Date",
+      "courierId": "Courier ID",
+      "fullName": "Full Name",
+      "supervisor": "Supervisor",
+      "vehicleType": "Vehicle Type",
+      "notes": "Notes",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "table": {
+      "date": "Date",
+      "importId": "Import ID",
+      "fileName": "File Name",
+      "dataSource": "Data Source",
+      "rows": "Rows",
+      "ofTotal": "of {{total}}",
+      "status": "Status",
+      "actions": "Actions",
+      "statusCompleted": "Completed",
+      "statusWarning": "Warning",
+      "statusFailed": "Failed",
+      "statusProcessing": "Processing",
+      "viewDetails": "View Details",
+      "pagination": {
+        "of": "of",
+        "records": "records"
+      }
+    }
+  }
+}

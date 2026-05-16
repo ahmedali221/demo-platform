@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@source "./";
+@source "../../shared/src";
+
+@theme {
+  --color-primary:          #2E75B6;
+  --color-primary-hover:    #245E91;
+  --color-dark:             #191C1E;
+  --color-dark-hover:       #0f1416;
+  --color-brand-blue:       #1E3A8A;
+  --color-brand-blue-hover: #152660;
+  --color-muted:            #94A3B8;
+  --color-border:           #E5E7EB;
+  --color-border-mid:       #B3B3B3;
+  --color-surface:          #F7F7F7;
+  --color-success:          #16A34A;
+  --color-success-bg:       #DCFCE7;
+  --color-warning:          #D97706;
+  --color-warning-bg:       #FEF3C7;
+  --color-danger:           #DC2626;
+  --color-danger-bg:        #FEE2E2;
+}
+
+* {
+  font-family: 'Cairo', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* SLA page sliders */
+.sla-slider-red,
+.sla-slider-blue {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 9999px;
+  height: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+.sla-slider-red::-webkit-slider-thumb,
+.sla-slider-blue::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+}
+
+.sla-slider-red::-webkit-slider-thumb {
+  background: #b91c1c;
+  box-shadow: 2px 2px 8px rgba(192, 57, 43, 0.5), -2px -2px 8px rgba(192, 57, 43, 0.5);
+}
+
+.sla-slider-blue::-webkit-slider-thumb {
+  background: #1e3a8a;
+  box-shadow: 2px 2px 8px rgba(29, 52, 120, 0.5), -2px -2px 8px rgba(29, 52, 120, 0.5);
+}
+
+.sla-slider-red::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #b91c1c;
+  border: 3px solid white;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(192, 57, 43, 0.5), -2px -2px 8px rgba(192, 57, 43, 0.5);
+}
+
+.sla-slider-blue::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1e3a8a;
+  border: 3px solid white;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(29, 52, 120, 0.5), -2px -2px 8px rgba(29, 52, 120, 0.5);
+}

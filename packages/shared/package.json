@@ -1,0 +1,27 @@
+{
+  "name": "@ops-brain/shared",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.2",
+    "@types/react": "^18.2.0",
+    "css-loader": "^7.1.2",
+    "postcss": "^8.4.49",
+    "postcss-loader": "^8.1.1",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "4.2.2"
+  },
+  "scripts": {
+    "tw:watch": "npx @tailwindcss/cli -i ./src/styles.css -o ./src/output.css --watch"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-i18next": "^17.0.0"
+  },
+  "dependencies": {
+    "lucide-react": "^1.14.0",
+    "tailwindcss": "^4.2.2"
+  }
+}

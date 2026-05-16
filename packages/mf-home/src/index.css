@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --color-primary: #C9A84C;
+  --color-primary-hover: #B8952A;
+  --color-dark: #1A2332;
+  --color-dark-hover: #0f1923;
+  --color-brand-blue: #1D3478;
+  --color-brand-blue-hover: #152660;
+  --color-stat-purple: #6812D9;
+  --color-stat-green: #27AE60;
+  --color-stat-red: #B83705;
+  --color-stat-blue: #2E75B6;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Cairo', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}

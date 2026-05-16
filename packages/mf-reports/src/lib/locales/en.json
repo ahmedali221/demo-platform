@@ -1,0 +1,218 @@
+{
+  "reports": {
+    "pageTitle": "Operational Reports",
+    "todayDate": "Sunday, April 5, 2026",
+    "reportsCount": "{{count}} reports",
+    "export": "Export",
+    "createReport": "Create Report",
+    "loading": "Loading...",
+    "noData": "No data available",
+    "view": {
+      "grid": "Cards",
+      "list": "List"
+    },
+    "filter": {
+      "all": "All",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly"
+    },
+    "searchPlaceholder": "Search by title, ID or platform...",
+    "noResults": "No reports match the search",
+    "pagination": {
+      "showing": "Showing {{totalItems}} of {{count}} reports"
+    },
+    "status": {
+      "completed": "Completed",
+      "warning": "Warning",
+      "error": "Error"
+    },
+    "stats": {
+      "records": "Records",
+      "orders": "Orders",
+      "violations": "Violations",
+      "warnings": "Warnings"
+    },
+    "units": {
+      "record": "record",
+      "order": "order",
+      "violation": "violation",
+      "warning": "warning"
+    },
+    "sla": {
+      "label": "SLA Ratio",
+      "target": "Target {{percent}}%",
+      "min": "0%",
+      "max": "100%",
+      "near": "Near",
+      "belowTarget": "Below Target",
+      "aboveTarget": "Above Target",
+      "matchingTarget": "Matching Target"
+    },
+    "modal": {
+      "detailsTitle": "Report Details",
+      "date": "Date",
+      "fullName": "Full Name",
+      "fileSize": "File Size",
+      "reportId": "Report ID",
+      "downloadPdf": "Download PDF",
+      "exportCsv": "Export CSV",
+      "reupload": "Re-upload"
+    },
+    "addReport": {
+      "title": "Create New Report",
+      "subtitle": "Select the report type, time period, and required sections",
+      "back": "Back",
+      "cancel": "Cancel",
+      "save": "Save Report",
+      "breadcrumb": {
+        "reports": "Reports",
+        "addReport": "Create New Report"
+      },
+      "reportType": {
+        "title": "Report Type",
+        "daily":   { "title": "Daily Report",   "desc": "View single-day performance" },
+        "weekly":  { "title": "Weekly Report",  "desc": "Compare 7 consecutive days" },
+        "monthly": { "title": "Monthly Report", "desc": "Full summary of a single month" },
+        "custom":  { "title": "Custom Report",  "desc": "Set a custom time range and sections" }
+      },
+      "reportInfo": {
+        "title": "Report Information",
+        "period": "Time Period",
+        "endDate": "End Date",
+        "reportTitle": "Report Title *",
+        "reportTitlePlaceholder": "e.g. Agent Performance Report — Q1 2025",
+        "exportFormat": "Export Format",
+        "platform": "Platform",
+        "quick": {
+          "today": "Today",
+          "yesterday": "Yesterday",
+          "last3": "Last 3 Days",
+          "last10": "Last 10 Days",
+          "thisMonth": "This Month"
+        }
+      },
+      "sections": {
+        "title": "Report Sections",
+        "agentPerformance": "Agent Performance",
+        "slaRatio": "SLA Ratio",
+        "operationalEfficiency": "Operational Efficiency",
+        "violations": "Detailed Violations",
+        "shiftControl": "Shift Control",
+        "platformComparison": "Platform Comparison",
+        "bestWorstAgents": "Best & Worst Agents",
+        "riskIndicators": "Risk Indicators"
+      },
+      "additionalOptions": {
+        "title": "Additional Options",
+        "sendEmail": "Send Report via Email",
+        "sendEmailDesc": "Will be sent to the platform email",
+        "recurring": "Auto Repeat",
+        "recurringDesc": "Automatically regenerate the report with the same settings periodically",
+        "notes": "Notes",
+        "notesPlaceholder": "Any notes or special instructions for the report..."
+      },
+      "export": { "both": "Both" },
+      "platform": { "all": "All" }
+    },
+    "companies": {
+      "title": "Company Reports",
+      "subtitleBold": "Company Operational Performance",
+      "subtitleRest": "All KPIs at company level",
+      "searchPlaceholder": "Search by title, ID or platform...",
+      "stats": {
+        "completed": "Total Completed Orders",
+        "forwarded": "Total Forwarded Orders",
+        "rejected": "Total Rejected Orders"
+      },
+      "kpis": {
+        "onTimeDeliveryRate": "On-Time Delivery Rate",
+        "cancellationRate": "Cancellation Rate",
+        "rejectionRate": "Rejection Rate",
+        "attendanceRate": "Shift Attendance Rate",
+        "operationalEfficiency": "Operational Efficiency"
+      },
+      "status": {
+        "WithinTarget": "Within Target",
+        "BelowTarget": "Below Target",
+        "ExceededLimit": "Exceeded Limit"
+      },
+      "tableTitle": "Operational Performance Summary Table",
+      "columns": {
+        "indicator": "Indicator",
+        "currentValue": "Current Value",
+        "status": "Status"
+      }
+    },
+    "couriers": {
+      "title": "Courier Performance",
+      "subtitleBold": "Couriers",
+      "subtitleRest": "All KPIs at company level",
+      "searchPlaceholder": "Search by courier name...",
+      "stats": {
+        "total": "Total Registered Couriers",
+        "eligible": "Eligible Couriers",
+        "eligibleBadge": "On Target",
+        "ineligible": "Ineligible Couriers",
+        "ineligibleBadge": "Below Target",
+        "eligibilityRate": "Overall Eligibility Rate",
+        "rateBadge": "On Target"
+      },
+      "classificationTable": "Keeta Level Distribution",
+      "tableTitle": "Courier Performance Details",
+      "columns": {
+        "courierName": "Courier Name",
+        "providerName": "Provider",
+        "totalTasksDelivered": "Tasks Delivered",
+        "totalTasksCancelledByCourier": "Cancellations",
+        "totalTasksRejected": "Rejected",
+        "onTimeRate": "On-Time Rate",
+        "avgCompletionRate": "Avg Completion Rate",
+        "keetaLevel": "Keeta Level",
+        "validityTier": "Volume Tier",
+        "isValid": "Status"
+      },
+      "couriersUnit": "couriers",
+      "noLevel": "No Level"
+    },
+    "mock": {
+      "dailyPerformance": "Daily Performance Report",
+      "weeklyViolations": "Weekly Violations Report",
+      "agentPerformance": "Delivery Agents Performance Report",
+      "monthlySla": "Monthly SLA Report",
+      "violationsWeek1": "Violations Report — Week 1",
+      "operationalEfficiency": "Operational Efficiency Report",
+      "weeklyOrders": "Weekly Orders Distribution Report",
+      "monthlyPerformanceMarch": "Monthly Performance Report — March",
+      "dailyDelay": "Daily Delay Report",
+      "agentWeekly2": "Agents Report — Second Week",
+      "dailyVolume": "Daily Shipments Volume Report",
+      "lateDeliveryWeek3": "Late Delivery Report — Week 3",
+      "weeklyPerformanceFeb": "Weekly Performance Report — February",
+      "slaFeb": "SLA Report — February",
+      "dailyDelivery": "Daily Delivery Report",
+      "regionsQ1": "Regions Report — First Quarter",
+      "weeklyErrors": "Weekly Errors Report",
+      "monthlyPerformanceJan": "Monthly Performance Report — January",
+      "errors": {
+        "failedProcess": "Failed to process the file — needs re-upload",
+        "failedProcessDesc": "An error occurred while processing the file. Please re-upload the file and try again.",
+        "timeout": "Processing timeout — please try again",
+        "timeoutDesc": "The file exceeded the processing time limit, it is recommended to re-upload or contact support."
+      },
+      "alerts": {
+        "needReview": "8 warnings need review",
+        "needReviewDesc": "Data in this report needs manual review before making operational decisions.",
+        "lowSla": "SLA is below the required target",
+        "lowSlaDesc": "Service ratio is below 90% — it is recommended to review performance data and identify causes for the decline.",
+        "urgentReview": "29 violations — urgent review",
+        "urgentReviewDesc": "Number of violations exceeded the allowed limit, immediate corrective action is advised.",
+        "sharpDecline": "SLA is significantly below target",
+        "sharpDeclineDesc": "It is recommended to analyze the causes of the sharp decline in service ratio this week.",
+        "highWarnings": "17 warnings need review",
+        "highWarningsDesc": "Number of warnings exceeded the normal limit this month."
+      },
+      "system": "System"
+    }
+  }
+}

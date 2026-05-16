@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --color-primary: #c9a84c;
+  --color-primary-hover: #b8952a;
+  --color-dark: #1a2332;
+  --color-dark-hover: #0f1923;
+  --color-brand-blue: #1d3478;
+  --color-brand-blue-hover: #152660;
+  --color-stat-purple: #6812d9;
+  --color-stat-green: #27ae60;
+  --color-stat-red: #b83705;
+  --color-stat-blue: #2e75b6;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-tab-active-bg: rgba(245, 158, 11, 0.1);
+  --color-tab-active-text: #d2a947;
+}
+
+* {
+  font-family: "Cairo", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+}
+
+@layer components {
+  .otp-input {
+    @apply w-14 h-14 text-center text-xl font-bold border-2 border-gray-200 rounded-xl focus:border-primary focus:outline-none transition-colors;
+  }
+}
+
+.flex-ends {
+  justify-content: end;
+}
