@@ -1,45 +1,77 @@
 import axios from "axios";
 import { api } from "../lib/axios";
 
-export type PeriodFilter = "monthly" | "weekly" | "daily" | "all";
-export type KpiStatus = "WithinTarget" | "BelowTarget" | "ExceededLimit";
+// ─── Summary (Reports tab) ────────────────────────────────────────────────────
 
-export interface CompanyOrderStats {
-  totalCompleted: number;
-  totalCancelled: number;
-  totalRejected: number;
+export type PeriodType = 1 | 2 | 3; // 1=Daily, 2=Weekly, 3=Monthly
+
+export interface SummaryParams {
+  periodType?: PeriodType;
+  from?: string; // yyyy-MM-dd
+  to?: string;   // yyyy-MM-dd
+  branchId?: string;
 }
 
-export interface CompanyKpiDto {
-  key: string;
-  value: number | null;
-  unit: string | null;
-  status: KpiStatus;
+export interface CompanySummary {
+  onTimeRate: number | null;
+  cancellationRate: number | null;
+  avgDeliveryMin: number | null;
+  courierEfficiency: number | null;
+  largeOrderOnTimeRate: number | null;
+  avgShiftAttendanceRate: number | null;
+  avgRejectionRate: number | null;
+  operationalEfficiency: number | null;
+  activeCouriersCount: number;
+  totalWorkingDays: number;
+  totalTasksDelivered: number | null;
+  totalTasksCancelled: number | null;
+  totalTasksRejected: number | null;
 }
 
-export interface CompanyOverviewResponse {
-  period: PeriodFilter;
-  dateFrom: string | null;
-  dateTo: string | null;
-  orderStats: CompanyOrderStats;
-  kpis: CompanyKpiDto[];
-}
-
-export async function getCompanyOverview(period: PeriodFilter = "monthly"): Promise<CompanyOverviewResponse> {
+// Returns null when the API responds 204 (no data for given filters)
+export async function getCompanySummary(params?: SummaryParams): Promise<CompanySummary | null> {
   try {
-    const response = await api.get<CompanyOverviewResponse>("/reports/company-overview", {
-      params: { period }
-    });
-    return response.data;
+    const res = await api.get<CompanySummary>("/analytics/kpis/company/summary", { params });
+    return res.status === 204 ? null : res.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      if (error.response) {
-        if (error.response.status === 403) throw error; // let the page detect 403
-        throw new Error(error.response.data?.message || "Failed to fetch company overview");
-      }
-      if (error.request) {
-        throw new Error("Network or CORS error");
-      }
+      if (error.response?.status === 403) throw error;
+      throw new Error(error.response?.data?.message || "Failed to fetch company summary");
+    }
+    throw error instanceof Error ? error : new Error("Something went wrong");
+  }
+}
+
+// ─── Live (Live tab) ──────────────────────────────────────────────────────────
+
+export interface CompanyLive {
+  snapshotDate: string;
+  uploadedAt: string;
+  tasksAccepted: number | null;
+  tasksDelivered: number | null;
+  tasksRejected: number | null;
+  capacityTotalRegistered: number | null;
+  capacityOnline: number | null;
+  capacityScheduled: number | null;
+  capacityOnShiftOnline: number | null;
+  onTimeRate: number | null;
+  cancellationRate: number | null;
+  largeOrderOnTimeRate: number | null;
+}
+
+export interface LiveParams {
+  branchId?: string;
+}
+
+// Returns null when the API responds 204 (no live file uploaded yet)
+export async function getCompanyLive(params?: LiveParams): Promise<CompanyLive | null> {
+  try {
+    const res = await api.get<CompanyLive>("/analytics/kpis/company/live", { params });
+    return res.status === 204 ? null : res.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 403) throw error;
+      throw new Error(error.response?.data?.message || "Failed to fetch live data");
     }
     throw error instanceof Error ? error : new Error("Something went wrong");
   }
