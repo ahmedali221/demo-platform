@@ -19,7 +19,7 @@ import StrategyCard from '../components/StrategyCard';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
-type StatusFilter = null | 2 | 3; // null = All, 2 = Completed, 3 = Failed
+type StatusFilter = null | 3 | 4; // null = All, 3 = Completed, 4 = Failed
 
 const PAGE_SIZE = 20;
 
@@ -64,12 +64,16 @@ function BatchDetailPanel({ batchId, isRtl, t }: {
     : (detail.dataSourceNameEn ?? detail.dataSourceId.slice(0, 8) + '…');
 
   const statusLabels: Record<number, string> = {
-    2: t('importLogs.table.statusCompleted'),
-    3: t('importLogs.table.statusFailed'),
+    1: t('importLogs.table.statusPending'),
+    2: t('importLogs.table.statusProcessing'),
+    3: t('importLogs.table.statusCompleted'),
+    4: t('importLogs.table.statusFailed'),
   };
   const statusColors: Record<number, string> = {
-    2: 'bg-green-100 text-green-700',
-    3: 'bg-red-100 text-red-700',
+    1: 'bg-gray-100 text-gray-500',
+    2: 'bg-blue-100 text-blue-700',
+    3: 'bg-green-100 text-green-700',
+    4: 'bg-red-100 text-red-700',
   };
 
   return (
@@ -251,14 +255,14 @@ export default function ImportLogsPage() {
               className={`py-1.5 px-3 rounded-lg text-xs font-cairo transition-colors ${statusFilter === null ? 'bg-[rgba(245,158,11,0.10)] text-[#D2A947] font-bold' : 'text-black hover:bg-gray-50'}`}>
               {t('importLogs.filters.all')}
             </button>
-            <button onClick={() => handleStatusFilter(2)}
-              className={`py-1.5 px-3 flex items-center gap-1.5 rounded-lg transition-colors ${statusFilter === 2 ? 'bg-[rgba(245,158,11,0.10)]' : 'hover:bg-gray-50'}`}>
-              <span className={`text-xs font-cairo ${statusFilter === 2 ? 'text-[#D2A947] font-bold' : 'text-black'}`}>{t('importLogs.filters.healthy')}</span>
-              <span className="w-2 h-2 rounded-full shrink-0 bg-[#22c55e]" />
-            </button>
             <button onClick={() => handleStatusFilter(3)}
               className={`py-1.5 px-3 flex items-center gap-1.5 rounded-lg transition-colors ${statusFilter === 3 ? 'bg-[rgba(245,158,11,0.10)]' : 'hover:bg-gray-50'}`}>
-              <span className={`text-xs font-cairo ${statusFilter === 3 ? 'text-[#D2A947] font-bold' : 'text-black'}`}>{t('importLogs.filters.failed')}</span>
+              <span className={`text-xs font-cairo ${statusFilter === 3 ? 'text-[#D2A947] font-bold' : 'text-black'}`}>{t('importLogs.filters.healthy')}</span>
+              <span className="w-2 h-2 rounded-full shrink-0 bg-[#22c55e]" />
+            </button>
+            <button onClick={() => handleStatusFilter(4)}
+              className={`py-1.5 px-3 flex items-center gap-1.5 rounded-lg transition-colors ${statusFilter === 4 ? 'bg-[rgba(245,158,11,0.10)]' : 'hover:bg-gray-50'}`}>
+              <span className={`text-xs font-cairo ${statusFilter === 4 ? 'text-[#D2A947] font-bold' : 'text-black'}`}>{t('importLogs.filters.failed')}</span>
               <span className="w-2 h-2 rounded-full shrink-0 bg-[#ef4444]" />
             </button>
           </div>

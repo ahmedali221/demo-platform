@@ -121,13 +121,14 @@ export async function uploadIngestionFile(
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
 function mapStatusInt(status: number): 'success' | 'warning' | 'failed' | 'processing' | 'pending' {
-  if (status === 2) return 'success';
-  if (status === 3) return 'failed';
+  if (status === 2) return 'processing';
+  if (status === 3) return 'success';
+  if (status === 4) return 'failed';
   return 'pending';
 }
 
 function mapStatusToRowStatus(status: number): 'completed' | 'failed' {
-  return status === 2 ? 'completed' : 'failed';
+  return status === 3 ? 'completed' : 'failed';
 }
 
 function formatDate(iso: string): string {

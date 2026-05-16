@@ -82,7 +82,7 @@ export const getCouriers = async (
 };
 export const getSingleCourier = async (id: string): Promise<CourierProfile> => {
   try {
-    const response = await api.get<CourierProfile>(`/v1/couriers/${id}`);
+    const response = await api.get<CourierProfile>(`/couriers/${id}`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -95,7 +95,7 @@ export const getSingleCourier = async (id: string): Promise<CourierProfile> => {
 
 export const getCourierKpis = async (id: string): Promise<CourierKpiSnapshot[]> => {
   try {
-    const response = await api.get<CourierKpiSnapshot[]>(`/v1/analytics/kpis/courier/${id}`);
+    const response = await api.get<CourierKpiSnapshot[]>(`/analytics/kpis/courier/${id}`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -108,7 +108,7 @@ export const getCourierKpis = async (id: string): Promise<CourierKpiSnapshot[]> 
 
 export const getCourierLiveStatus = async (id: string): Promise<LiveStatus> => {
   try {
-    const response = await api.get<LiveStatus>(`/v1/analytics/courier/${id}/live-status`);
+    const response = await api.get<LiveStatus>(`/analytics/courier/${id}/live-status`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -121,7 +121,7 @@ export const getCourierLiveStatus = async (id: string): Promise<LiveStatus> => {
 
 export const getCourierCharts = async (id: string): Promise<CourierCharts> => {
   try {
-    const response = await api.get<CourierCharts>(`/v1/analytics/courier/${id}/charts`);
+    const response = await api.get<CourierCharts>(`/analytics/courier/${id}/charts`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -203,7 +203,7 @@ export const getCourierViolations = async (
   const query = new URLSearchParams({ courierId, page: String(page), pageSize: String(pageSize) });
   if (isResolved !== undefined) query.set("isResolved", String(isResolved));
   try {
-    const response = await api.get<ViolationsResponse>(`/v1/violations?${query.toString()}`);
+    const response = await api.get<ViolationsResponse>(`/violations?${query.toString()}`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

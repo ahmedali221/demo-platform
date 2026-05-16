@@ -160,15 +160,27 @@
       "ofTotal": "of {{total}}",
       "status": "Status",
       "actions": "Actions",
+      "statusPending": "Pending",
+      "statusProcessing": "Processing",
       "statusCompleted": "Completed",
       "statusWarning": "Warning",
       "statusFailed": "Failed",
-      "statusProcessing": "Processing",
       "viewDetails": "View Details",
       "pagination": {
         "of": "of",
         "records": "records"
       }
+    },
+    "detail": {
+      "pageTitle": "Import Details",
+      "pageSubtitle": "Full details for this import session",
+      "fileName": "File Name",
+      "dataSource": "Data Source",
+      "status": "Status",
+      "rowsTotal": "Total Rows",
+      "createdAt": "Created At",
+      "completedAt": "Completed At",
+      "errorSummary": "Error Summary"
     }
   }
 }

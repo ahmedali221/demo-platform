@@ -97,6 +97,7 @@ const remoteConfig = {
       exposes: {
         "./DataImportPage": path.join(remotePath, "src/pages/DataImportPage"),
         "./ImportLogsPage": path.join(remotePath, "src/pages/ImportLogsPage"),
+        "./ImportDetailPage": path.join(remotePath, "src/pages/ImportDetailPage"),
       },
       shared: {
         react: { singleton: true, requiredVersion: remoteDeps.react },

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { DotsIcon } from './icons';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -197,11 +198,69 @@ export function SessionDataTable({ items, totalCount, page, pageSize, onPageChan
   );
 }
 
+function ActionsDropdown({ rowId, isRtl, t, onViewDetails }: {
+  rowId: string;
+  isRtl: boolean;
+  t: (key: string, opts?: Record<string, unknown>) => string;
+  onViewDetails: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [coords, setCoords] = useState({ top: 0, left: 0 });
+  const btnRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (btnRef.current && !btnRef.current.closest('[data-dropdown-root]')?.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [open]);
+
+  const handleOpen = () => {
+    if (btnRef.current) {
+      const rect = btnRef.current.getBoundingClientRect();
+      setCoords({
+        top: rect.bottom + window.scrollY + 4,
+        left: isRtl ? rect.left + window.scrollX : rect.right + window.scrollX - 140,
+      });
+    }
+    setOpen((v) => !v);
+  };
+
+  return (
+    <div data-dropdown-root>
+      <button
+        ref={btnRef}
+        onClick={handleOpen}
+        className="text-gray-400 hover:text-gray-700 p-1.5 rounded-lg hover:bg-white transition-all shadow-sm active:scale-95"
+      >
+        <DotsIcon />
+      </button>
+      {open && createPortal(
+        <div
+          style={{ position: 'absolute', top: coords.top, left: coords.left, zIndex: 9999 }}
+          className="bg-white border border-gray-200 rounded-lg shadow-lg min-w-[140px] py-1"
+        >
+          <button
+            onClick={() => { onViewDetails(); setOpen(false); }}
+            className="w-full text-start px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-cairo"
+          >
+            {t('importLogs.table.viewDetails')}
+          </button>
+        </div>,
+        document.body,
+      )}
+    </div>
+  );
+}
+
 export default function ImportLogsTable({ records, total, page, pageSize, onPageChange, t }: ImportLogsTableProps) {
   const { i18n } = useTranslation();
   const isRtl = i18n.language === 'ar';
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   const from = total === 0 ? 0 : (page - 1) * pageSize + 1;
@@ -306,26 +365,13 @@ export default function ImportLogsTable({ records, total, page, pageSize, onPage
                   </td>
 
                   {/* Actions */}
-                  <td className="py-5 text-start px-3 relative">
-                    <button 
-                      onClick={() => setOpenDropdown(openDropdown === row.id ? null : row.id)}
-                      className="text-gray-400 hover:text-gray-700 p-1.5 rounded-lg hover:bg-white transition-all shadow-sm active:scale-95"
-                    >
-                      <DotsIcon />
-                    </button>
-                    {openDropdown === row.id && (
-                      <div className={`absolute top-full mt-1 ${isRtl ? 'left-8' : 'right-8'} bg-white border border-gray-200 rounded-lg shadow-lg z-10 min-w-[120px] py-1`}>
-                        <button 
-                          onClick={() => {
-                             setSearchParams({ importId: row.id });
-                             setOpenDropdown(null);
-                          }}
-                          className="w-full text-start px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-cairo"
-                        >
-                          {t('importLogs.table.viewDetails', 'View Details')}
-                        </button>
-                      </div>
-                    )}
+                  <td className="py-5 text-start px-3">
+                    <ActionsDropdown
+                      rowId={row.id}
+                      isRtl={isRtl}
+                      t={t}
+                      onViewDetails={() => navigate(`/import-logs/${row.id}`)}
+                    />
                   </td>
                 </tr>
               );

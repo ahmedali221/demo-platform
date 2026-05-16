@@ -160,15 +160,27 @@
       "ofTotal": "من {{total}}",
       "status": "الحالة",
       "actions": "إجراءات",
+      "statusPending": "قيد الانتظار",
+      "statusProcessing": "قيد المعالجة",
       "statusCompleted": "مكتمل",
       "statusWarning": "تحذير",
       "statusFailed": "فاشل",
-      "statusProcessing": "قيد المعالجة",
       "viewDetails": "عرض التفاصيل",
       "pagination": {
         "of": "من",
         "records": "سجل"
       }
+    },
+    "detail": {
+      "pageTitle": "تفاصيل الاستيراد",
+      "pageSubtitle": "التفاصيل الكاملة لجلسة الاستيراد هذه",
+      "fileName": "اسم الملف",
+      "dataSource": "مصدر البيانات",
+      "status": "الحالة",
+      "rowsTotal": "إجمالي الصفوف",
+      "createdAt": "تاريخ الإنشاء",
+      "completedAt": "تاريخ الاكتمال",
+      "errorSummary": "ملخص الأخطاء"
     }
   }
 }

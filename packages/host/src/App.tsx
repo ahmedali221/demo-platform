@@ -19,6 +19,7 @@ import Logo from "./assets/logo.svg";
 
 const RemoteDataImportPage = lazy(() => import("mfDataExport/DataImportPage"));
 const RemoteImportLogsPage = lazy(() => import("mfDataExport/ImportLogsPage"));
+const RemoteImportDetailPage = lazy(() => import("mfDataExport/ImportDetailPage"));
 const RemoteCourierPage = lazy(() => import("mfCouriers/CouriersPage"));
 const RemoteCourierProfile = lazy(() => import("mfCouriers/CouriersProfile"));
 const RemoteAddCourierPage = lazy(() => import("mfCouriers/AddCourierPage"));
@@ -115,6 +116,16 @@ function ImportLogsRoute() {
     <RemoteErrorBoundary moduleName="mf-data-export">
       <Suspense fallback={RemoteFallback}>
         <RemoteImportLogsPage onNavigate={handleNavigate} />
+      </Suspense>
+    </RemoteErrorBoundary>
+  );
+}
+
+function ImportDetailRoute() {
+  return (
+    <RemoteErrorBoundary moduleName="mf-data-export">
+      <Suspense fallback={RemoteFallback}>
+        <RemoteImportDetailPage />
       </Suspense>
     </RemoteErrorBoundary>
   );
@@ -291,6 +302,7 @@ function AppRoutes() {
       <Route path="/dashboard" element={<ProtectedRoute><Layout logoSrc={Logo} onLogout={onLogout}><Dashboard /></Layout></ProtectedRoute>} />
       <Route path="/data-import" element={<ProtectedRoute><Layout logoSrc={Logo} onLogout={onLogout}><DataImportRoute /></Layout></ProtectedRoute>} />
       <Route path="/import-logs" element={<ProtectedRoute><Layout logoSrc={Logo} onLogout={onLogout}><ImportLogsRoute /></Layout></ProtectedRoute>} />
+      <Route path="/import-logs/:id" element={<ProtectedRoute><Layout logoSrc={Logo} onLogout={onLogout}><ImportDetailRoute /></Layout></ProtectedRoute>} />
       <Route path="/couriers" element={<ProtectedRoute><Layout logoSrc={Logo} onLogout={onLogout}><CourierRoute /></Layout></ProtectedRoute>} />
       <Route path="/couriers/add" element={<ProtectedRoute><Layout logoSrc={Logo} onLogout={onLogout}><AddCourierRoute /></Layout></ProtectedRoute>} />
       <Route path="/couriers/:id" element={<ProtectedRoute><Layout logoSrc={Logo} onLogout={onLogout}><CourierProfileRoute /></Layout></ProtectedRoute>} />
