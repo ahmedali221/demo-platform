@@ -1,6 +1,27 @@
 import axios from "axios";
 import { api } from "../lib/axios";
 
+// ─── Branches ─────────────────────────────────────────────────────────────────
+
+export interface Branch {
+  id: string;
+  nameAr: string;
+  nameEn: string;
+  isActive: boolean;
+}
+
+export async function getBranches(): Promise<Branch[]> {
+  try {
+    const res = await api.get<Branch[]>("/org/branches", { params: { isActive: true } });
+    return res.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || "Failed to fetch branches");
+    }
+    throw error instanceof Error ? error : new Error("Something went wrong");
+  }
+}
+
 // ─── Summary (Reports tab) ────────────────────────────────────────────────────
 
 export type PeriodType = 1 | 2 | 3; // 1=Daily, 2=Weekly, 3=Monthly

@@ -11,8 +11,10 @@ import { ForbiddenPage } from "@ops-brain/shared";
 import {
   getCompanySummary,
   getCompanyLive,
+  getBranches,
   CompanySummary,
   CompanyLive,
+  Branch,
 } from "../api/companies.service";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
@@ -131,8 +133,9 @@ function fmtRelativeTime(utcStr: string): string {
 
 type PeriodFilter = 1 | 2 | 3; // 1=Daily, 2=Weekly, 3=Monthly
 
-function ReportsTab({ t }: { t: TFunction }) {
-  const [period, setPeriod] = useState<PeriodFilter>(1);
+interface ReportsTabProps { t: TFunction; period: PeriodFilter; branchId: string | null; }
+
+function ReportsTab({ t, period, branchId }: ReportsTabProps) {
   const [data, setData] = useState<CompanySummary | null>(null);
   const [noData, setNoData] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -142,14 +145,14 @@ function ReportsTab({ t }: { t: TFunction }) {
     setLoading(true);
     setNoData(false);
     setError(null);
-    getCompanySummary({ periodType: period })
+    getCompanySummary({ periodType: period, branchId: branchId ?? undefined })
       .then((res) => {
         if (res === null) setNoData(true);
         else setData(res);
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, [period]);
+  }, [period, branchId]);
 
   if (loading) {
     return (
@@ -205,29 +208,8 @@ function ReportsTab({ t }: { t: TFunction }) {
     XLSX.writeFile(wb, "company-report.xlsx");
   };
 
-  const periodTabs: { id: PeriodFilter; label: string }[] = [
-    { id: 1, label: t("reports.filter.daily") },
-    { id: 2, label: t("reports.filter.weekly") },
-    { id: 3, label: t("reports.filter.monthly") },
-  ];
-
   return (
     <>
-      {/* ── Period filter tabs ── */}
-      <div className="flex items-center bg-white border border-gray-200 rounded-xl p-1 shadow-sm w-fit">
-        {periodTabs.map((p) => (
-          <button
-            key={p.id}
-            onClick={() => setPeriod(p.id)}
-            className={`px-4 py-1.5 rounded-lg text-sm font-bold transition-all ${
-              period === p.id ? "bg-[#1D3478] text-white" : "text-gray-500 hover:text-gray-800"
-            }`}
-          >
-            {p.label}
-          </button>
-        ))}
-      </div>
-
       {/* ── Top stats: 3 order count cards ── */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <StrategyCard
@@ -326,7 +308,9 @@ function ReportsTab({ t }: { t: TFunction }) {
 
 // ─── Live Tab ─────────────────────────────────────────────────────────────────
 
-function LiveTab({ t }: { t: TFunction }) {
+interface LiveTabProps { t: TFunction; branchId: string | null; }
+
+function LiveTab({ t, branchId }: LiveTabProps) {
   const [data, setData] = useState<CompanyLive | null>(null);
   const [noData, setNoData] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -336,14 +320,14 @@ function LiveTab({ t }: { t: TFunction }) {
     setLoading(true);
     setNoData(false);
     setError(null);
-    getCompanyLive()
+    getCompanyLive({ branchId: branchId ?? undefined })
       .then((res) => {
         if (res === null) setNoData(true);
         else setData(res);
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, []);
+  }, [branchId]);
 
   if (loading) {
     return (
@@ -505,26 +489,44 @@ function LiveTab({ t }: { t: TFunction }) {
 
 type PageTab = "reports" | "live";
 
+const ChevronDownIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="6 9 12 15 18 9" />
+  </svg>
+);
+
 export default function CompaniesReportPage() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const isRtl = i18n.language?.startsWith("ar");
-  const [activeTab, setActiveTab] = useState<PageTab>("reports");
-  const [forbidden, setForbidden] = useState(false);
+
+  const [activeTab, setActiveTab]   = useState<PageTab>("reports");
+  const [period, setPeriod]         = useState<PeriodFilter>(1);
+  const [branchId, setBranchId]     = useState<string | null>(null);
+  const [branches, setBranches]     = useState<Branch[]>([]);
+  const [forbidden, setForbidden]   = useState(false);
+
+  useEffect(() => {
+    getBranches().then(setBranches).catch(() => {});
+  }, []);
 
   useEffect(() => {
     getCompanySummary({ periodType: 1 }).catch((err) => {
-      if (axios.isAxiosError(err) && err.response?.status === 403) {
-        setForbidden(true);
-      }
+      if (axios.isAxiosError(err) && err.response?.status === 403) setForbidden(true);
     });
   }, []);
 
   if (forbidden) return <ForbiddenPage onGoBack={() => navigate(-1)} dir={isRtl ? "rtl" : "ltr"} />;
 
-  const tabs: { id: PageTab; label: string }[] = [
+  const pageTabs: { id: PageTab; label: string }[] = [
     { id: "reports", label: t("reports.companies.tabs.reports") },
     { id: "live",    label: t("reports.companies.tabs.live") },
+  ];
+
+  const periodTabs: { id: PeriodFilter; label: string }[] = [
+    { id: 1, label: t("reports.filter.daily") },
+    { id: 2, label: t("reports.filter.weekly") },
+    { id: 3, label: t("reports.filter.monthly") },
   ];
 
   return (
@@ -543,24 +545,69 @@ export default function CompaniesReportPage() {
         </div>
       </div>
 
-      {/* ── Page tabs ── */}
-      <div className="flex items-center bg-white border border-gray-200 rounded-xl p-1 shadow-sm w-fit">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-5 py-1.5 rounded-lg text-sm font-bold transition-all ${
-              activeTab === tab.id ? "bg-[#1D3478] text-white" : "text-gray-500 hover:text-gray-800"
-            }`}
-          >
-            {tab.id === "live" && <LiveDotIcon />}
-            {tab.label}
-          </button>
-        ))}
+      {/* ── Filter bar: page tabs + period tabs (reports only) + branch dropdown ── */}
+      <div className="flex flex-wrap items-center gap-3">
+
+        {/* Page tabs */}
+        <div className="flex items-center bg-white border border-gray-200 rounded-xl p-1 shadow-sm">
+          {pageTabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-2 px-5 py-1.5 rounded-lg text-sm font-bold transition-all ${
+                activeTab === tab.id ? "bg-[#1D3478] text-white" : "text-gray-500 hover:text-gray-800"
+              }`}
+            >
+              {tab.id === "live" && <LiveDotIcon />}
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Period tabs — reports tab only */}
+        {activeTab === "reports" && (
+          <div className="flex items-center bg-white border border-gray-200 rounded-xl p-1 shadow-sm">
+            {periodTabs.map((p) => (
+              <button
+                key={p.id}
+                onClick={() => setPeriod(p.id)}
+                className={`px-4 py-1.5 rounded-lg text-sm font-bold transition-all ${
+                  period === p.id ? "bg-[#1D3478] text-white" : "text-gray-500 hover:text-gray:800"
+                }`}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Branch dropdown */}
+        {branches.length > 0 && (
+          <div className="relative">
+            <select
+              value={branchId ?? ""}
+              onChange={(e) => setBranchId(e.target.value || null)}
+              className="appearance-none h-9 ps-3 pe-8 bg-white border border-gray-200 rounded-xl text-sm font-bold text-gray-700 shadow-sm cursor-pointer outline-none hover:bg-gray-50 transition-colors"
+            >
+              <option value="">{t("reports.companies.allBranches")}</option>
+              {branches.map((b) => (
+                <option key={b.id} value={b.id}>
+                  {isRtl ? b.nameAr : b.nameEn}
+                </option>
+              ))}
+            </select>
+            <span className="pointer-events-none absolute top-1/2 end-2.5 -translate-y-1/2 text-gray-400">
+              <ChevronDownIcon />
+            </span>
+          </div>
+        )}
       </div>
 
       {/* ── Tab content ── */}
-      {activeTab === "reports" ? <ReportsTab t={t} /> : <LiveTab t={t} />}
+      {activeTab === "reports"
+        ? <ReportsTab t={t} period={period} branchId={branchId} />
+        : <LiveTab t={t} branchId={branchId} />
+      }
     </div>
   );
 }

@@ -124,6 +124,7 @@
         "reports": "Reports",
         "live": "Live"
       },
+      "allBranches": "All Branches",
       "stats": {
         "completed": "Total Completed Orders",
         "cancelled": "Total Cancelled Orders",
