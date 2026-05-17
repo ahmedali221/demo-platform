@@ -120,17 +120,30 @@
       "subtitleBold": "Company Operational Performance",
       "subtitleRest": "All KPIs at company level",
       "searchPlaceholder": "Search by title, ID or platform...",
+      "tabs": {
+        "reports": "Reports",
+        "live": "Live"
+      },
       "stats": {
         "completed": "Total Completed Orders",
+        "cancelled": "Total Cancelled Orders",
         "forwarded": "Total Forwarded Orders",
         "rejected": "Total Rejected Orders"
       },
       "kpis": {
+        "onTimeRate": "On-Time Rate",
         "onTimeDeliveryRate": "On-Time Delivery Rate",
         "cancellationRate": "Cancellation Rate",
+        "avgRejectionRate": "Avg Rejection Rate",
         "rejectionRate": "Rejection Rate",
+        "avgShiftAttendanceRate": "Shift Attendance Rate",
         "attendanceRate": "Shift Attendance Rate",
-        "operationalEfficiency": "Operational Efficiency"
+        "operationalEfficiency": "Operational Efficiency",
+        "avgDeliveryMin": "Avg Delivery Time (min)",
+        "courierEfficiency": "Courier Efficiency",
+        "largeOrderOnTimeRate": "Large Order On-Time Rate",
+        "activeCouriersCount": "Active Couriers",
+        "totalWorkingDays": "Total Working Days"
       },
       "status": {
         "WithinTarget": "Within Target",
@@ -142,6 +155,16 @@
         "indicator": "Indicator",
         "currentValue": "Current Value",
         "status": "Status"
+      },
+      "live": {
+        "noData": "No live data uploaded yet",
+        "lastUpdated": "Last updated",
+        "snapshotDate": "Snapshot date",
+        "tasksAccepted": "Accepted Tasks",
+        "totalRegistered": "Total Registered",
+        "online": "Couriers Online",
+        "scheduled": "Couriers Scheduled",
+        "onShiftOnline": "On Shift & Online"
       }
     },
     "couriers": {

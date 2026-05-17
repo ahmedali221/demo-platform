@@ -129,7 +129,10 @@ function fmtRelativeTime(utcStr: string): string {
 
 // ─── Reports Tab ──────────────────────────────────────────────────────────────
 
+type PeriodFilter = 1 | 2 | 3; // 1=Daily, 2=Weekly, 3=Monthly
+
 function ReportsTab({ t }: { t: TFunction }) {
+  const [period, setPeriod] = useState<PeriodFilter>(1);
   const [data, setData] = useState<CompanySummary | null>(null);
   const [noData, setNoData] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -139,14 +142,14 @@ function ReportsTab({ t }: { t: TFunction }) {
     setLoading(true);
     setNoData(false);
     setError(null);
-    getCompanySummary({ periodType: 1 })
+    getCompanySummary({ periodType: period })
       .then((res) => {
         if (res === null) setNoData(true);
         else setData(res);
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, []);
+  }, [period]);
 
   if (loading) {
     return (
@@ -202,8 +205,29 @@ function ReportsTab({ t }: { t: TFunction }) {
     XLSX.writeFile(wb, "company-report.xlsx");
   };
 
+  const periodTabs: { id: PeriodFilter; label: string }[] = [
+    { id: 1, label: t("reports.filter.daily") },
+    { id: 2, label: t("reports.filter.weekly") },
+    { id: 3, label: t("reports.filter.monthly") },
+  ];
+
   return (
     <>
+      {/* ── Period filter tabs ── */}
+      <div className="flex items-center bg-white border border-gray-200 rounded-xl p-1 shadow-sm w-fit">
+        {periodTabs.map((p) => (
+          <button
+            key={p.id}
+            onClick={() => setPeriod(p.id)}
+            className={`px-4 py-1.5 rounded-lg text-sm font-bold transition-all ${
+              period === p.id ? "bg-[#1D3478] text-white" : "text-gray-500 hover:text-gray-800"
+            }`}
+          >
+            {p.label}
+          </button>
+        ))}
+      </div>
+
       {/* ── Top stats: 3 order count cards ── */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <StrategyCard
@@ -341,7 +365,7 @@ function LiveTab({ t }: { t: TFunction }) {
     return (
       <div className="flex flex-col items-center justify-center py-24 gap-3 text-gray-400">
         <LiveDotIcon />
-        <p className="text-sm font-semibold">{t("reports.companies.live.noData", "No live data uploaded yet")}</p>
+        <p className="text-sm font-semibold">{t("reports.companies.live.noData")}</p>
       </div>
     );
   }
@@ -351,20 +375,49 @@ function LiveTab({ t }: { t: TFunction }) {
       ? (data.capacityOnShiftOnline ?? 0) / data.capacityScheduled
       : null;
 
+  const handleExport = () => {
+    const rows = [
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.stats.completed"),              [t("reports.companies.columns.currentValue")]: fmtNum(data.tasksDelivered) },
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.live.tasksAccepted"),           [t("reports.companies.columns.currentValue")]: fmtNum(data.tasksAccepted) },
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.stats.rejected"),               [t("reports.companies.columns.currentValue")]: fmtNum(data.tasksRejected) },
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.live.totalRegistered"),         [t("reports.companies.columns.currentValue")]: fmtNum(data.capacityTotalRegistered) },
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.live.online"),                  [t("reports.companies.columns.currentValue")]: fmtNum(data.capacityOnline) },
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.live.scheduled"),               [t("reports.companies.columns.currentValue")]: fmtNum(data.capacityScheduled) },
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.live.onShiftOnline"),           [t("reports.companies.columns.currentValue")]: fmtNum(data.capacityOnShiftOnline) },
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.kpis.onTimeRate"),              [t("reports.companies.columns.currentValue")]: fmtPct(data.onTimeRate) },
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.kpis.cancellationRate"),        [t("reports.companies.columns.currentValue")]: fmtPct(data.cancellationRate) },
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.kpis.largeOrderOnTimeRate"),    [t("reports.companies.columns.currentValue")]: fmtPct(data.largeOrderOnTimeRate) },
+      { [t("reports.companies.columns.indicator")]: t("reports.companies.kpis.avgShiftAttendanceRate"),  [t("reports.companies.columns.currentValue")]: fmtPct(attendanceRate) },
+    ];
+    const ws = XLSX.utils.json_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, t("reports.companies.tabs.live"));
+    XLSX.writeFile(wb, `company-live-${data.snapshotDate}.xlsx`);
+  };
+
   return (
     <>
       {/* ── Last updated / snapshot date ── */}
-      <div className="flex items-center gap-4 text-xs text-gray-500 flex-wrap">
-        <div className="flex items-center gap-2">
-          <LiveDotIcon />
-          <span>{t("reports.companies.live.lastUpdated", "Last updated")}:</span>
-          <span className="font-semibold">{fmtRelativeTime(data.uploadedAt)}</span>
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-4 text-xs text-gray-500 flex-wrap">
+          <div className="flex items-center gap-2">
+            <LiveDotIcon />
+            <span>{t("reports.companies.live.lastUpdated")}:</span>
+            <span className="font-semibold">{fmtRelativeTime(data.uploadedAt)}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>{t("reports.companies.live.snapshotDate")}:</span>
+            <span className="font-semibold">{data.snapshotDate}</span>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <span>{t("reports.companies.live.snapshotDate", "Snapshot date")}:</span>
-          <span className="font-semibold">{data.snapshotDate}</span>
-        </div>
+        <button
+          onClick={handleExport}
+          className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
+        >
+          <ExportIcon />
+          {t("reports.export")}
+        </button>
       </div>
 
       {/* ── Task counts ── */}
@@ -377,7 +430,7 @@ function LiveTab({ t }: { t: TFunction }) {
         />
         <StrategyCard
           title={fmtNum(data.tasksAccepted)}
-          description={t("reports.companies.live.tasksAccepted", "Accepted Tasks")}
+          description={t("reports.companies.live.tasksAccepted")}
           accentColor="#2E75B6"
           icon={<ClockIcon />}
         />
@@ -393,25 +446,25 @@ function LiveTab({ t }: { t: TFunction }) {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         <StrategyCard
           title={fmtNum(data.capacityTotalRegistered)}
-          description={t("reports.companies.live.totalRegistered", "Total Registered")}
+          description={t("reports.companies.live.totalRegistered")}
           accentColor="#6B7280"
           icon={<CourierIcon />}
         />
         <StrategyCard
           title={fmtNum(data.capacityOnline)}
-          description={t("reports.companies.live.online", "Couriers Online")}
+          description={t("reports.companies.live.online")}
           accentColor="#2E75B6"
           icon={<CourierIcon />}
         />
         <StrategyCard
           title={fmtNum(data.capacityScheduled)}
-          description={t("reports.companies.live.scheduled", "Couriers Scheduled")}
+          description={t("reports.companies.live.scheduled")}
           accentColor="#D97706"
           icon={<ShiftIcon />}
         />
         <StrategyCard
           title={fmtNum(data.capacityOnShiftOnline)}
-          description={t("reports.companies.live.onShiftOnline", "On Shift & Online")}
+          description={t("reports.companies.live.onShiftOnline")}
           accentColor="#7C3AED"
           icon={<CourierIcon />}
         />
@@ -470,8 +523,8 @@ export default function CompaniesReportPage() {
   if (forbidden) return <ForbiddenPage onGoBack={() => navigate(-1)} dir={isRtl ? "rtl" : "ltr"} />;
 
   const tabs: { id: PageTab; label: string }[] = [
-    { id: "reports", label: t("reports.companies.tabs.reports", "Reports") },
-    { id: "live",    label: t("reports.companies.tabs.live", "Live") },
+    { id: "reports", label: t("reports.companies.tabs.reports") },
+    { id: "live",    label: t("reports.companies.tabs.live") },
   ];
 
   return (

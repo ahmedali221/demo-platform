@@ -120,17 +120,30 @@
       "subtitleBold": "الأداء التشغيلي للشركة",
       "subtitleRest": "كل المؤشرات على مستوى الشركة",
       "searchPlaceholder": "بحث بالعنوان أو المعرفة أو المنصة...",
+      "tabs": {
+        "reports": "التقارير",
+        "live": "مباشر"
+      },
       "stats": {
         "completed": "إجمالي الطلبات المكتملة",
+        "cancelled": "إجمالي الطلبات الملغاة",
         "forwarded": "إجمالي الطلبات الملفافة (توصيل)",
         "rejected": "إجمالي الطلبات المرفوضة"
       },
       "kpis": {
+        "onTimeRate": "معدل الالتزام بالوقت",
         "onTimeDeliveryRate": "معدل التوصيل على الموعد",
         "cancellationRate": "معدل الإلغاء",
+        "avgRejectionRate": "متوسط معدل الرفض",
         "rejectionRate": "معدل الرفض",
+        "avgShiftAttendanceRate": "نسبة حضور الشفتات",
         "attendanceRate": "نسبة حضور الشفتات",
-        "operationalEfficiency": "الكفاءة التشغيلية"
+        "operationalEfficiency": "الكفاءة التشغيلية",
+        "avgDeliveryMin": "متوسط وقت التوصيل (دقيقة)",
+        "courierEfficiency": "كفاءة المندوب",
+        "largeOrderOnTimeRate": "معدل التوصيل في الوقت للطلبات الكبيرة",
+        "activeCouriersCount": "المناديب النشطون",
+        "totalWorkingDays": "إجمالي أيام العمل"
       },
       "status": {
         "WithinTarget": "ضمن الهدف",
@@ -142,6 +155,16 @@
         "indicator": "المؤشر",
         "currentValue": "القيمة الحالية",
         "status": "الحالة"
+      },
+      "live": {
+        "noData": "لم يتم رفع بيانات مباشرة بعد",
+        "lastUpdated": "آخر تحديث",
+        "snapshotDate": "تاريخ اللقطة",
+        "tasksAccepted": "الطلبات المقبولة",
+        "totalRegistered": "إجمالي المسجلين",
+        "online": "المناديب المتصلون",
+        "scheduled": "المناديب المجدولون",
+        "onShiftOnline": "في الشفت ومتصل"
       }
     },
     "couriers": {
